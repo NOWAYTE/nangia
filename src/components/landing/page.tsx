@@ -53,7 +53,7 @@ export default function LandingPage() {
           <span className="font-semibold text-gray-800"> No Following Required.</span>
           <span className="font-semibold text-gray-800"> Completely Faceless.</span>
           <br className="mb-2" />
-          Just find the 30-second "Good Parts" Hidden in Long Videos
+          Just find the 30-second &quot;Good Parts&quot; Hidden in Long Videos
         </p>
       </div>
 
