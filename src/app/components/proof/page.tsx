@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const Proof = () => {
   return (
-    <div className="min-h-screen bg-gray-100 max-w-7xl mx-auto flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gray-100 max-w-7xl mx-auto flex flex-col items-center p-6 rounded-xs">
       <div className="text-center mb-8">
         <h1 className="text-xs font-bold text-gray-900 mb-2 font-semibold items-center justify center rounded-lg italic">Proof</h1>
                 <p className="text-[18px] sm:text-[20px] md:text-[24px] lg:text-[28px] xl:text-[24px] 2xl:text-[24px] 
