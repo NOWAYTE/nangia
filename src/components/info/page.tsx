@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import Image from "next/image";
-import { Button } from "../ui/button";
+
 
 export default function Info() {
   return (
@@ -17,7 +17,7 @@ export default function Info() {
         What If You Got{" "}
         <span className="text-green-400">Paid</span>{" "}
         <span className="italic">Every Time</span> Someone Watched The{" "}
-        <span className="text-pink-400 italic underline">"Good Parts"</span>{" "}
+        <span className="text-pink-400 italic underline">&quot;Good Parts&quot;</span>{" "}
         You Found In Long Videos?
       </h1>
 
@@ -83,7 +83,7 @@ export default function Info() {
 
       {/* Testimonial */}
       <div className="mt-10 bg-neutral-800 border border-neutral-700 px-6 py-4 rounded-lg max-w-md text-sm italic text-gray-100 items-start">
-        "Made $1,200 my first month – finally got financial breathing room!"
+        &quot;Made $1,200 my first month – finally got financial breathing room!&quot;
         <br />
         <span className="not-italic text-white font-bold">– Alim K.</span>
       </div>
