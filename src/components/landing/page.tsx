@@ -4,10 +4,10 @@ import Ticker from "@/components/ui/Ticker";
 
 export default function LandingPage() {
   const sources = [
-    "/images/p1.webp",
-    "/images/p2.webp",
-    "/images/p3.webp",
-    "/images/p4.webp",
+    "/images/p5.png",
+    "/images/p6.png",
+    "/images/p7.png",
+    "/images/p8.png"
   ];
 
   const items = sources.map((src, i) => (
@@ -24,7 +24,7 @@ export default function LandingPage() {
         speedPercent={97}
         gapClassName="gap-5"
         paddingClassName="p-4"
-        clipWidthPx={621 * 4}
+        clipWidthPx={621 * 7}
         fade
         fadeWidthPercent={5}
         fadeInsetPercent={0}

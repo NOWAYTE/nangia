@@ -68,20 +68,14 @@ export default function Ticker({
             className={containerClasses}
             style={{
                 width: clipWidthPx ? `${clipWidthPx}px` : undefined,
-                // animation controls
-                // @ts-ignore: custom properties allowed
                 "--ticker-duration": `${durationSeconds}s`,
-                // @ts-ignore
                 "--ticker-hover-scale": hoverSpeedScale,
-                // fade controls
-                // @ts-ignore
                 "--ticker-fade-width": `${fadeWidthPercent}%`,
-                // @ts-ignore
                 "--ticker-fade-inset": `${fadeInsetPercent}%`,
-                // @ts-ignore
                 "--ticker-fade-opacity": fadeOpacity,
-            }}
+            } as React.CSSProperties}
         >
+        
             {/* Two tracks duplicated to enable seamless looping */}
             <div className={`inline-flex ${trackClass}`}>{commonTrack}{commonTrack}</div>
         </div>
