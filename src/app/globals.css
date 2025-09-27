@@ -45,7 +45,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #111111;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -79,7 +79,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #111111;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -118,5 +118,105 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes marquee-ltr {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes marquee-rtl {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ticker-container {
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-track {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    width: max-content;
+  }
+  .ticker-animate-ltr {
+    animation-name: marquee-ltr;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: var(--ticker-duration, 30s);
+  }
+  .ticker-animate-rtl {
+    animation-name: marquee-rtl;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: var(--ticker-duration, 30s);
+  }
+
+  /* Edge fade mask for the ticker container */
+  .ticker-fade {
+    /* Controls */
+    --ticker-fade-width: 5%;
+    --ticker-fade-inset: 0%;
+    --ticker-fade-opacity: 1; /* 1 = fully visible center, 0.8 dims slightly */
+
+    /* Compute stops */
+    --ticker-fade-left-stop: calc(var(--ticker-fade-inset) + var(--ticker-fade-width));
+    --ticker-fade-right-start: calc(100% - var(--ticker-fade-inset) - var(--ticker-fade-width));
+
+    /* Apply as mask so edges fade to the background */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0) 0%,
+      rgb(0 0 0 / var(--ticker-fade-opacity)) var(--ticker-fade-left-stop),
+      rgb(0 0 0 / var(--ticker-fade-opacity)) var(--ticker-fade-right-start),
+      rgb(0 0 0 / 0) 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgb(0 0 0 / 0) 0%,
+      rgb(0 0 0 / var(--ticker-fade-opacity)) var(--ticker-fade-left-stop),
+      rgb(0 0 0 / var(--ticker-fade-opacity)) var(--ticker-fade-right-start),
+      rgb(0 0 0 / 0) 100%
+    );
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+  }
+
+  /* Subtle luxury leather-like background */
+  .leather-bg {
+    position: relative;
+    background-color: var(--background);
+    overflow-x: hidden;
+    isolation: isolate; /* ensure pseudo elements blend locally */
+  }
+  .leather-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* Layered gradients to simulate mottled leather + fine grain */
+    background-image:
+      radial-gradient(1200px 600px at 15% 5%, rgba(255,255,255,0.035), transparent 60%),
+      radial-gradient(900px 500px at 85% 0%, rgba(255,255,255,0.03), transparent 62%),
+      radial-gradient(1000px 600px at 50% 100%, rgba(255,255,255,0.03), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.012), rgba(255,255,255,0.012) 2px, transparent 2px, transparent 6px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01) 2px, transparent 2px, transparent 6px);
+    background-blend-mode: overlay, overlay, overlay, soft-light, soft-light;
+    opacity: 0.35; /* adjust intensity */
+  }
+  .leather-bg::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* Soft vignette for depth */
+    background: radial-gradient(120% 100% at 50% 0%, transparent 0%, transparent 55%, rgba(0,0,0,0.35) 100%);
+    mix-blend-mode: multiply;
   }
 }
